@@ -1,3 +1,5 @@
+package edu.stanford.protege.shifttree;
+
 import com.google.common.graph.Traverser;
 import edu.stanford.protege.shifttree.ShiftTree;
 import edu.stanford.protege.shifttree.ShiftTreeNode;
