@@ -1,7 +1,6 @@
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Random;
-
-import com.google.common.base.Optional;
 
 public class ShiftTree {
 

@@ -1,13 +1,11 @@
+import com.google.common.graph.Traverser;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
-import java.util.function.Consumer;
-
-import com.google.common.base.Optional;
-import com.google.common.collect.BinaryTreeTraverser;
 
 public class ShiftTreeTest {
 
@@ -84,26 +82,7 @@ public class ShiftTreeTest {
 	private static void printTree(ShiftTree tree) {
 		System.out.println("\nSorted:");
 		ShiftTreeNode root = tree.getRoot();
-		TreeTraverser traverser = new ShiftTreeTest().new TreeTraverser();
-		traverser.inOrderTraversal(root).forEach(new Consumer<ShiftTreeNode>() {
-			@Override
-			public void accept(ShiftTreeNode t) {
-				System.out.println(t.toString());
-			}
-		});
-	}
-
-	private class TreeTraverser extends BinaryTreeTraverser<ShiftTreeNode> {
-
-		@Override
-		public Optional<ShiftTreeNode> leftChild(ShiftTreeNode node) {
-			return node.getLeftChild();
-		}
-
-		@Override
-		public Optional<ShiftTreeNode> rightChild(ShiftTreeNode node) {
-			return node.getRightChild();
-		}
-		
+		var traverser = Traverser.forTree(ShiftTreeNode::getSuccessors);
+		traverser.depthFirstPreOrder(root).forEach(t -> System.out.println(t.toString()));
 	}
 }

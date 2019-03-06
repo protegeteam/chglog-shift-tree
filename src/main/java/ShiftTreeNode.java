@@ -1,10 +1,11 @@
-import com.google.common.base.Optional;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class ShiftTreeNode {
 	
-	private Optional<ShiftTreeNode> right = Optional.absent();
-	private Optional<ShiftTreeNode> left = Optional.absent();
+	private Optional<ShiftTreeNode> right = Optional.empty();
+	private Optional<ShiftTreeNode> left = Optional.empty();
 
 	private int value;
 	private int minKey = 1;
@@ -61,6 +62,13 @@ public class ShiftTreeNode {
 
 	public Optional<ShiftTreeNode> getRightChild() {
 		return right;
+	}
+
+	public List<ShiftTreeNode> getSuccessors() {
+		var result = new ArrayList<ShiftTreeNode>();
+		left.ifPresent(result::add);
+		right.ifPresent(result::add);
+		return result;
 	}
 	
 	@Override
