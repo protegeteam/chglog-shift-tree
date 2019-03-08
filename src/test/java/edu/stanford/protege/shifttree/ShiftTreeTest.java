@@ -1,6 +1,5 @@
 package edu.stanford.protege.shifttree;
 
-import com.google.common.graph.Traverser;
 import edu.stanford.protege.shifttree.ShiftTree;
 import edu.stanford.protege.shifttree.ShiftTreeNode;
 
@@ -85,8 +84,7 @@ public class ShiftTreeTest {
 
 	private static void printTree(ShiftTree tree) {
 		System.out.println("\nSorted:");
-		ShiftTreeNode root = tree.getRoot();
-		var traverser = Traverser.forTree(ShiftTreeNode::getSuccessors);
-		traverser.depthFirstPreOrder(root).forEach(t -> System.out.println(t.toString()));
+		tree.traverse( node -> System.out.println(node.toString()) );
 	}
+
 }

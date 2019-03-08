@@ -1,7 +1,5 @@
 package edu.stanford.protege.shifttree;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class ShiftTreeNode {
@@ -64,13 +62,6 @@ public class ShiftTreeNode {
 
 	public Optional<ShiftTreeNode> getRightChild() {
 		return right;
-	}
-
-	public List<ShiftTreeNode> getSuccessors() {
-		var result = new ArrayList<ShiftTreeNode>();
-		left.ifPresent(result::add);
-		right.ifPresent(result::add);
-		return result;
 	}
 	
 	@Override

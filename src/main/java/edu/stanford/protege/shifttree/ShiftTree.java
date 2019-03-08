@@ -3,6 +3,7 @@ package edu.stanford.protege.shifttree;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Random;
+import java.util.function.Consumer;
 
 public class ShiftTree {
 
@@ -118,5 +119,21 @@ public class ShiftTree {
 		}
 	}
 	
+	public void traverse( Consumer<ShiftTreeNode> f ) {
+		traverse(root, f);
+	}
 	
+	private void traverse(ShiftTreeNode node, Consumer<ShiftTreeNode> f) {
+		Optional<ShiftTreeNode> leftChild = node.getLeftChild();
+		if (leftChild.isPresent()) {
+			traverse(leftChild.get(), f);
+		}
+
+		f.accept(node);
+		
+		Optional<ShiftTreeNode> rightChild = node.getRightChild();
+		if (rightChild.isPresent()) {
+			traverse(rightChild.get(), f);
+		}
+	}
 }
